@@ -3,7 +3,7 @@ CREATE TABLE `User` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `email` VARCHAR(255) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
-    `name` VARCHAR(191) NOT NULL,
+    `balance` DOUBLE NOT NULL DEFAULT 0,
 
     UNIQUE INDEX `User_email_key`(`email`),
     PRIMARY KEY (`id`)
@@ -15,7 +15,7 @@ CREATE TABLE `Transaction` (
     `amount` DOUBLE NOT NULL,
     `category` VARCHAR(191) NOT NULL,
     `target` VARCHAR(191) NOT NULL,
-    `timeProcessed` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `timeProcessed` VARCHAR(191) NOT NULL,
     `userId` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
