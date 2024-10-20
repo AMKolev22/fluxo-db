@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import auth from "./routes/auth"; 
 import deposit from "./routes/deposit";
 import withdraw from "./routes/withdraw";
+import send from "./routes/send";
 
 const app: Application = express();
 const port = 3000;
@@ -18,4 +19,5 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/auth', auth); 
 app.use('/deposit', deposit);
 app.use('/withdraw', withdraw);
+app.use('/send', send);
 app.listen(port, () => console.log(`Server is listening on port ${port}!`));
