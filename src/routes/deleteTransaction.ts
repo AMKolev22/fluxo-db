@@ -11,10 +11,10 @@ router.post("/", async (req: Request, res: Response) => {
             where: { email },
         });
         if (user){
-            const updatedTransaction = await prisma.transaction.delete({
+            await prisma.transaction.delete({
                     where: { id: transactionId, userId: user.id },
                 });
-            return res.status(200).json(updatedTransaction);
+            return res.status(200).json({message: "Transaction deleted"});
         }
 
     } catch (error) {
