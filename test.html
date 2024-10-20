@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authenticate User</title>
+</head>
+
+<body>
+    <h1>User Authentication</h1>
+
+    <form id="auth-form">
+        <label for="text">Email:</label>
+        <input type="text" id="text" name="email" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <button type="submit" id="authenticate-button">Authenticate</button>
+    </form>
+
+    <div id="response"></div>
+
+    <script>
+        document.getElementById('auth-form').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            const email = document.getElementById('text').value;
+            const password = document.getElementById('password').value;
+            body = JSON.stringify({ email, password });
+            console.log(body);
+            try {
+                const response = await fetch('http://localhost:3000/authenticate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }), // Send the credentials in JSON format
+                });
+
+                // Handle response
+                const data = await response.json();
+                if (response.ok) {
+                    document.getElementById('response').innerText = `Success: ${JSON.stringify(data)}`;
+                } else {
+                    document.getElementById('response').innerText = `Error: ${data.error}`;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('response').innerText = 'Network error occurred.';
+            }
+        });
+    </script>
+</body>
+
+</html>

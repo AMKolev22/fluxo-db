@@ -1,13 +1,17 @@
 import express, { Application, Request, Response } from 'express';
+import { PrismaClient } from '@prisma/client';
+import auth from "./routes/auth"; 
 
-// Boot express
 const app: Application = express();
-const port = 8080;
+const port = 3000;
 
-// Application routing
-app.use('/', (req: Request, res: Response) => {
-  res.status(200).send({ data: 'Hello from Ornio AS' });
+app.use(express.json());
+
+export const prisma = new PrismaClient();
+
+app.get('/', (req: Request, res: Response) => {
+  res.status(200).send({ data: 'ROOT' });
 });
 
-// Start server
+app.use('/auth', auth); 
 app.listen(port, () => console.log(`Server is listening on port ${port}!`));
