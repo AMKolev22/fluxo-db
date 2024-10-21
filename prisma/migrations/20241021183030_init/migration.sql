@@ -15,10 +15,19 @@ CREATE TABLE `Transaction` (
     `amount` DOUBLE NOT NULL,
     `category` VARCHAR(191) NOT NULL,
     `target` VARCHAR(191) NOT NULL,
+    `typeOfTransaction` VARCHAR(255) NOT NULL DEFAULT 'NULL',
     `timeProcessed` VARCHAR(191) NOT NULL,
     `userId` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Token` (
+    `id` VARCHAR(191) NOT NULL DEFAULT '',
+    `active` BOOLEAN NOT NULL DEFAULT false,
+
+    UNIQUE INDEX `Token_id_key`(`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
