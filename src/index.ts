@@ -10,7 +10,8 @@ import deleteTransaction from "./routes/deleteTransaction";
 import getTokenInfo from "./routes/getSessionInfo";
 import deleteToken from "./routes/deleteSession";
 const app: Application = express();
-const port = 3000;
+
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
