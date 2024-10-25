@@ -16,8 +16,8 @@
   "bin": "",
   "scripts": {
     "build": "tsc",
-    "prisma:generate": "prisma generate",
-    "postinstall": "npm run prisma:generate && npm run build",
+    "prisma:generate": "sh -c 'prisma generate",
+    "postinstall": "chmod +x ./node_modules/.bin/prisma && npx prisma:generate && npx build",
     "start": "node dist/index.js",
     "prettier": "prettier --write \"src/**/*.ts\"",
     "prettier:check": "prettier --check \"src/**/*.ts\"",
