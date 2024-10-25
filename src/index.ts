@@ -15,7 +15,9 @@ const port = process.env.PORT || 8080;
 
 app.use(express.json());
 
-export const prisma = new PrismaClient();
+export const prisma = new PrismaClient({
+  log: ['query', 'info', 'warn', 'error'],
+});
 
 app.get('/', (req: Request, res: Response) => {
   res.status(200).send({ data: 'ROOT' });
