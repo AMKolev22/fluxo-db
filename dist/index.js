@@ -1,0 +1,36 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.prisma = void 0;
+const express_1 = __importDefault(require("express"));
+const client_1 = require("@prisma/client");
+const auth_1 = __importDefault(require("./routes/auth"));
+const deposit_1 = __importDefault(require("./routes/deposit"));
+const withdraw_1 = __importDefault(require("./routes/withdraw"));
+const send_1 = __importDefault(require("./routes/send"));
+const editTransaction_1 = __importDefault(require("./routes/editTransaction"));
+const session_1 = __importDefault(require("./routes/session"));
+const deleteTransaction_1 = __importDefault(require("./routes/deleteTransaction"));
+const getSessionInfo_1 = __importDefault(require("./routes/getSessionInfo"));
+const deleteSession_1 = __importDefault(require("./routes/deleteSession"));
+const cors_1 = __importDefault(require("cors"));
+const app = (0, express_1.default)();
+const port = 8000;
+app.use(express_1.default.json());
+app.use((0, cors_1.default)());
+exports.prisma = new client_1.PrismaClient();
+app.get('/', (req, res) => {
+    res.status(200).send({ data: 'ROOT' });
+});
+app.use('/api/auth', auth_1.default);
+app.use('/api/deposit', deposit_1.default);
+app.use('/api/withdraw', withdraw_1.default);
+app.use('/api/send', send_1.default);
+app.use('/api/editTransaction', editTransaction_1.default);
+app.use('/api/deleteTransaction', deleteTransaction_1.default);
+app.use('/api/session', session_1.default);
+app.use("/api/getInfo", getSessionInfo_1.default);
+app.use("/api/deleteSession", deleteSession_1.default);
+app.listen(port, () => console.log(`Server is listening on port ${port}!`));
