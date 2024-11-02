@@ -6,6 +6,8 @@ const router = Router();
 router.post("/", async (req: Request, res: Response) => {
     try {
         const { amountInserted, category, deadline, email, goal, id, title } = req.body;
+        console.log(amountInserted, category, deadline, email, goal, id, title);
+        
         const user = await prisma.user.findUnique({
             where: { email },
         });
