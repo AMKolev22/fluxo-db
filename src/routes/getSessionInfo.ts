@@ -29,6 +29,7 @@ router.post("/", async (req: Request, res: Response) => {
                 balance: user.balance,
                 id: user.id,
                 transactions: transactions,
+                budgets: budgets,
             }
             return res.status(200).send(JSON.stringify(data));
         }
