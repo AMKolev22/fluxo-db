@@ -24,6 +24,11 @@ router.post("/", async (req: Request, res: Response) => {
             const transactions = await prisma.transaction.findMany({
                 where: { userId: user.id },
             });
+
+        const budgets = await prisma.budget.findMany({
+                where: { userId: user.id },
+            });
+            
             const data = {
                 email: user.email,
                 balance: user.balance,
