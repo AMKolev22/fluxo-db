@@ -5,6 +5,7 @@ import cors from 'cors';
 import auth from "./routes/auth";
 import deposit from "./routes/deposit";
 import withdraw from "./routes/withdraw";
+import newBudget from "./routes/newBudget"
 import send from "./routes/send";
 import edit from "./routes/editTransaction";
 import token from "./routes/session";
@@ -35,6 +36,7 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/auth', auth);
 app.use('/deposit', deposit);
 app.use('/withdraw', withdraw);
+app.use('/newBudget', newBudget);
 app.use('/send', send);
 app.use('/editTransaction', edit);
 app.use('/deleteTransaction', deleteTransaction);
