@@ -22,7 +22,12 @@ router.post("/", async (req: Request, res: Response) => {
         
         else if (user){
             const transactions = await prisma.transaction.findMany({
-                where: { userId: user.id },
+                where: { 
+                    OR: [
+                        { userId: user.id },
+                        { target: user.email},
+                    ]
+                }
             });
 
         const budgets = await prisma.budget.findMany({
