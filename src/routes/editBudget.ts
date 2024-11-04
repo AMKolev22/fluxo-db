@@ -14,7 +14,7 @@ router.post("/", async (req: Request, res: Response) => {
             const updatedBudget = await prisma.budget.update({
                     where: { id: budgetId, userId: user.id },
                     data: {
-                        goal: goal,
+                        goal: parseFloat(goal),
                         category: category,
                         deadline: deadline,
                     },
