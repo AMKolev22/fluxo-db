@@ -15,6 +15,7 @@ router.post("/", async (req: Request, res: Response) => {
                 where: {userId: user.id}
             });
             userBudgets.forEach((el) => {console.log(`Budget with id ${el.id}: ${el.title}`)})
+            console.log(`Id of budget for editing: ${budgetId}`)
             const updatedBudget = await prisma.budget.update({
                     where: { id: Number(budgetId), userId: user.id },
                     data: {
