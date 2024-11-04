@@ -12,7 +12,7 @@ router.post("/", async (req: Request, res: Response) => {
         });
         if (user){
             const updatedBudget = await prisma.budget.update({
-                    where: { id: budgetId, userId: user.id },
+                    where: { id: Number(budgetId), userId: user.id },
                     data: {
                         goal: parseFloat(goal),
                         category: category,
