@@ -43,7 +43,7 @@ router.post("/", async (req: Request, res: Response) => {
         } else{
             const budgetId = type.split(":")[2];
             const budget = await prisma.budget.findUnique({
-                where: {id: budgetId},
+                where: {id: Number(budgetId)},
             });
 
             if (budget == null){throw new Error("Budget is null");}
@@ -69,7 +69,7 @@ router.post("/", async (req: Request, res: Response) => {
                 });
 
                 const updatedBudget = await prisma.budget.update({
-                    where: {id: budget.id},
+                    where: {id: Number(budget.id)},
                     data:{
                         amountInserted: budget.amountInserted + amountFloat,
                     },
