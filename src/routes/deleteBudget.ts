@@ -12,9 +12,9 @@ router.post("/", async (req: Request, res: Response) => {
         });
         if (user){
             await prisma.budget.delete({
-                    where: { id: budgetId, userId: user.id },
+                    where: { id: Number(budgetId), userId: user.id },
                 });
-            return res.status(200).json({message: "Transaction deleted"});
+            return res.status(200).json({message: "Budget deleted"});
         }
 
     } catch (error) {
